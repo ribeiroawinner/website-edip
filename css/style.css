@@ -1,0 +1,227 @@
+/* Reset Básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --bg-color: #000000;
+    /* Preto absoluto */
+    --text-color: #ffffff;
+    --font-main: 'Courier New', Courier, monospace;
+    /* Fonte Monospaced Global */
+    --font-mono: 'Courier New', Courier, monospace;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-family: var(--font-main);
+    line-height: 1.6;
+    height: 100vh;
+    overflow: hidden;
+    position: relative;
+    /* Imagem de fundo removida */
+}
+
+/* Background Overlay removido */
+body::after {
+    display: none;
+}
+
+.landing-container {
+    position: relative;
+    z-index: 1;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    text-align: center;
+}
+
+/* Logo Styles */
+.logo-container .brand-logo {
+    height: 120px;
+    width: auto;
+    filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.1));
+    padding-top: 20px;
+    /* Ajuste para abaixar visualmente */
+}
+
+/* Date Time Display */
+.datetime-display {
+    font-family: var(--font-mono);
+    font-size: 0.95rem;
+    /* Aumentado */
+    letter-spacing: 1px;
+    color: rgba(255, 255, 255, 0.8);
+    margin-top: -1rem;
+    font-weight: bold;
+}
+
+/* Vertical Navigation */
+.vertical-nav ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.vertical-nav a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    /* Opcional, na imagem parecia normalcase ou upper */
+    letter-spacing: 2px;
+    font-weight: 400;
+    transition: all 0.3s ease;
+    opacity: 0.8;
+}
+
+/* Cart Badge Styling */
+.cart-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    /* Aproxima o número do texto */
+}
+
+.cart-count {
+    background-color: #fff;
+    color: #000;
+    font-size: 0.75rem;
+    font-weight: bold;
+    height: 18px;
+    width: 18px;
+    border-radius: 50%;
+    /* Faz o círculo */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+}
+
+.vertical-nav a:hover {
+    opacity: 1;
+    letter-spacing: 4px;
+    /* Efeito hover sutil */
+}
+
+/* Social Icons */
+.social-icons {
+    margin-top: 2rem;
+    display: flex;
+    /* Alinhar lado a lado */
+    gap: 1.5rem;
+    /* Espaçamento entre icones */
+}
+
+.social-icons a {
+    color: white;
+    opacity: 0.7;
+    transition: opacity 0.3s;
+}
+
+.social-icons a:hover {
+    opacity: 1;
+}
+
+/* Loading Screen Styles */
+#loading-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #000;
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: opacity 0.8s ease-out, visibility 0.8s;
+}
+
+.loader-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+.loader-logo {
+    height: 80px;
+    width: auto;
+    filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.2));
+    animation: loaderPulse 1.5s infinite alternate;
+}
+
+.loader-bar {
+    width: 0%;
+    height: 2px;
+    background-color: #fff;
+    animation: loaderProgress 2.5s ease-in-out forwards;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+@keyframes loaderPulse {
+    from {
+        transform: scale(1);
+        opacity: 0.8;
+    }
+
+    to {
+        transform: scale(1.05);
+        opacity: 1;
+        filter: drop-shadow(0 0 25px rgba(255, 255, 255, 0.5));
+    }
+}
+
+@keyframes loaderProgress {
+    0% {
+        width: 0;
+    }
+
+    50% {
+        width: 50%;
+    }
+
+    100% {
+        width: 150px;
+    }
+
+    /* Largura final da barra */
+}
+
+.loaded {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .logo-container .brand-logo {
+        height: 90px;
+        /* Reduz para mobile */
+        padding-top: 10px;
+    }
+
+    .datetime-display {
+        font-size: 0.85rem;
+    }
+
+    .vertical-nav a {
+        font-size: 0.85rem;
+        letter-spacing: 1px;
+    }
+
+    .social-icons {
+        margin-top: 1.5rem;
+        gap: 1rem;
+    }
+}
