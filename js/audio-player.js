@@ -1,11 +1,16 @@
 /* Audio Player Logic */
 document.addEventListener('DOMContentLoaded', () => {
+    // Check if we are on a checkout page - if so, do not initialize the player
+    if (window.location.href.toLowerCase().includes('checkout')) {
+        return;
+    }
+
     // Lista de músicas Encontradas na Raiz
     const playlist = [
-        'Future, Metro Boomin, Travis Scott, Playboi Carti - Type Shit (Official Video).mp3',
-        'Gunna & Future - pushin P (feat. Young Thug) [Official Audio].mp3',
-        'Playboi Carti - TOXIC [with Skepta] (Official Audio).mp3',
-        'Travis Scott - DUMBO.mp3'
+        'musicas-sons/Future, Metro Boomin, Travis Scott, Playboi Carti - Type Shit (Official Video).mp3',
+        'musicas-sons/Gunna & Future - pushin P (feat. Young Thug) [Official Audio].mp3',
+        'musicas-sons/Playboi Carti - TOXIC [with Skepta] (Official Audio).mp3',
+        'musicas-sons/Travis Scott - DUMBO.mp3'
     ];
 
     // Configuração
@@ -13,22 +18,59 @@ document.addEventListener('DOMContentLoaded', () => {
     audio.volume = 0.2; // 20% do volume original
     let currentTrack = 0;
 
-    // UI Elements
-    // Criando o botão via JS para não poluir o HTML se não tiver musica
+    // UI Elements - Container
+    const playerContainer = document.createElement('div');
+    playerContainer.id = 'audio-controls';
+    playerContainer.style.position = 'fixed';
+    playerContainer.style.bottom = '2rem';
+    playerContainer.style.right = '2rem';
+    playerContainer.style.zIndex = '1000';
+    playerContainer.style.display = 'flex';
+    playerContainer.style.gap = '1rem';
+    playerContainer.style.alignItems = 'center';
+
+    // Common button styles
+    const btnStyle = (btn) => {
+        btn.style.background = 'none';
+        btn.style.border = 'none';
+        btn.style.color = 'rgba(255,255,255,0.5)';
+        btn.style.fontFamily = 'var(--font-mono, monospace)';
+        btn.style.fontSize = '1.2rem'; /* Aumentado um pouco para as setas */
+        btn.style.cursor = 'pointer';
+        btn.style.transition = 'color 0.3s ease';
+
+        btn.addEventListener('mouseenter', () => btn.style.color = '#fff');
+        btn.addEventListener('mouseleave', () => {
+            if (btn.id !== 'sound-toggle' || audio.paused) {
+                btn.style.color = 'rgba(255,255,255,0.5)';
+            } else {
+                btn.style.color = '#fff'; // Keep white if playing
+            }
+        });
+    };
+
+    // Prev Button
+    const prevBtn = document.createElement('button');
+    prevBtn.textContent = '<';
+    btnStyle(prevBtn);
+
+    // Sound Toggle Button
     const soundBtn = document.createElement('button');
-    soundBtn.className = 'sound-control';
+    soundBtn.id = 'sound-toggle';
     soundBtn.textContent = 'SOUND [OFF]';
-    soundBtn.style.position = 'absolute';
-    soundBtn.style.bottom = '2rem';
-    soundBtn.style.right = '2rem';
-    soundBtn.style.background = 'none';
-    soundBtn.style.border = 'none';
-    soundBtn.style.color = 'rgba(255,255,255,0.5)';
-    soundBtn.style.fontFamily = 'var(--font-mono)';
-    soundBtn.style.fontSize = '0.8rem';
-    soundBtn.style.cursor = 'pointer';
-    soundBtn.style.zIndex = '100';
-    document.body.appendChild(soundBtn);
+    btnStyle(soundBtn);
+    soundBtn.style.fontSize = '0.8rem'; /* Mantem o texto pequeno */
+
+    // Next Button
+    const nextBtn = document.createElement('button');
+    nextBtn.textContent = '>';
+    btnStyle(nextBtn);
+
+    // Append to container
+    playerContainer.appendChild(prevBtn);
+    playerContainer.appendChild(soundBtn);
+    playerContainer.appendChild(nextBtn);
+    document.body.appendChild(playerContainer);
 
     // Shuffle Array
     function shuffle(array) {
@@ -41,7 +83,10 @@ document.addEventListener('DOMContentLoaded', () => {
     shuffle(playlist);
 
     function playTrack(index) {
+        // Loop logic
         if (index >= playlist.length) index = 0;
+        if (index < 0) index = playlist.length - 1;
+
         currentTrack = index;
         audio.src = playlist[currentTrack];
 
@@ -56,6 +101,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 // Auto-play was prevented
                 console.log('Autoplay blocked. Waiting for interaction.');
                 soundBtn.textContent = 'SOUND [OFF]';
+                soundBtn.style.color = 'rgba(255,255,255,0.5)';
             });
         }
     }
@@ -65,7 +111,7 @@ document.addEventListener('DOMContentLoaded', () => {
         playTrack(currentTrack + 1);
     });
 
-    // Controle Manual
+    // Controle Manual - Sound Toggle
     soundBtn.addEventListener('click', () => {
         if (audio.paused) {
             playTrack(currentTrack);
@@ -74,6 +120,16 @@ document.addEventListener('DOMContentLoaded', () => {
             soundBtn.textContent = 'SOUND [OFF]';
             soundBtn.style.color = 'rgba(255,255,255,0.5)';
         }
+    });
+
+    // Controle Manual - Next
+    nextBtn.addEventListener('click', () => {
+        playTrack(currentTrack + 1);
+    });
+
+    // Controle Manual - Prev
+    prevBtn.addEventListener('click', () => {
+        playTrack(currentTrack - 1);
     });
 
     // Tentar iniciar (pode ser bloqueado, mas o botão resolve)
