@@ -1,0 +1,387 @@
+/* Reset & Base */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background-color: #f6f6f9;
+    /* Clean light gray bg */
+    color: #1a1a1a;
+    font-size: 14px;
+}
+
+/* Layout */
+.admin-wrapper {
+    display: flex;
+    min-height: 100vh;
+}
+
+/* Sidebar (Yampi Style - Dark) */
+.sidebar {
+    width: 260px;
+    background: #1e1e2d;
+    /* Dark Navy/Black */
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+}
+
+.sidebar-header {
+    height: 64px;
+    display: flex;
+    align-items: center;
+    padding: 0 1.5rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.logo-img {
+    height: 28px;
+    margin-right: 10px;
+    filter: invert(1);
+}
+
+/* Invert logo to white if needed */
+.logo-text {
+    font-weight: 700;
+    font-size: 1.1rem;
+    letter-spacing: 1px;
+}
+
+.sidebar-nav {
+    padding: 1rem 0;
+    flex: 1;
+}
+
+.nav-item {
+    display: flex;
+    align-items: center;
+    padding: 0.8rem 1.5rem;
+    color: #a2a3b7;
+    text-decoration: none;
+    transition: all 0.2s;
+    font-weight: 500;
+}
+
+.nav-item svg {
+    margin-right: 12px;
+}
+
+.nav-item:hover {
+    color: #fff;
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.nav-item.active {
+    color: #fff;
+    background: #2b2b40;
+    /* Slightly lighter active state */
+    border-left: 3px solid #727cf5;
+    /* Accent color */
+}
+
+.nav-item.disabled {
+    opacity: 0.5;
+    cursor: default;
+}
+
+/* Main Content area */
+.main-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+}
+
+/* Topbar */
+.topbar {
+    height: 64px;
+    background: #fff;
+    border-bottom: 1px solid #eef2f7;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 2rem;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.02);
+}
+
+.user-profile .avatar {
+    width: 36px;
+    height: 36px;
+    background: #727cf5;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    font-size: 0.85rem;
+}
+
+/* Content Body */
+.content-view {
+    padding: 2rem;
+}
+
+.hidden {
+    display: none !important;
+}
+
+.active {
+    display: block;
+}
+
+/* Stats Grid */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.stat-card {
+    background: #fff;
+    padding: 1.5rem;
+    border-radius: 6px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+}
+
+.stat-card h3 {
+    color: #6c757d;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.stat-card .stat-value {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #333;
+}
+
+/* Card & Tables */
+.card {
+    background: #fff;
+    border-radius: 6px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+}
+
+.card-header {
+    padding: 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #f1f3fa;
+}
+
+.btn-primary {
+    background: #727cf5;
+    /* Shopfiy/SaaS Blueish */
+    color: white;
+    border: none;
+    padding: 0.6rem 1.2rem;
+    border-radius: 4px;
+    font-weight: 500;
+    cursor: pointer;
+    font-family: inherit;
+    transition: background 0.2s;
+}
+
+.btn-primary:hover {
+    background: #5a62c4;
+}
+
+.save-btn-primary {
+    background: #0acf97;
+    /* Green Success */
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-right: 1rem;
+}
+
+.save-btn-primary:hover {
+    background: #09b080;
+}
+
+.search-box {
+    position: relative;
+    width: 300px;
+}
+
+.search-box input {
+    width: 100%;
+    padding: 0.6rem 0.6rem 0.6rem 2.4rem;
+    border: 1px solid #dee2e6;
+    border-radius: 4px;
+    background: #f9f9f9;
+}
+
+.search-box svg {
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #adb5bd;
+}
+
+/* Table */
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.data-table th {
+    text-align: left;
+    padding: 1rem;
+    background: #fcfcfd;
+    color: #6c757d;
+    font-weight: 600;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    border-bottom: 1px solid #eef2f7;
+}
+
+.data-table td {
+    padding: 1rem;
+    border-bottom: 1px solid #eef2f7;
+    vertical-align: middle;
+}
+
+.product-thumb {
+    width: 48px;
+    height: 48px;
+    border-radius: 4px;
+    object-fit: cover;
+    background: #eee;
+}
+
+.badge-status {
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+.status-active {
+    background: rgba(10, 207, 151, 0.15);
+    color: #0acf97;
+}
+
+.status-sold_out {
+    background: rgba(250, 92, 124, 0.15);
+    color: #fa5c7c;
+}
+
+/* Buttons */
+.btn-icon {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #6c757d;
+    padding: 4px;
+}
+
+.btn-icon:hover {
+    color: #333;
+}
+
+.text-right {
+    text-align: right;
+}
+
+/* Modal */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1050;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(2px);
+}
+
+.modal-dialog {
+    width: 100%;
+    max-width: 500px;
+    padding: 1rem;
+}
+
+.modal-content {
+    background: #fff;
+    border-radius: 6px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    display: flex;
+    flex-direction: column;
+}
+
+.modal-header {
+    padding: 1.25rem;
+    border-bottom: 1px solid #f1f3fa;
+    display: flex;
+    justify-content: space-between;
+}
+
+.modal-body {
+    padding: 1.25rem;
+}
+
+.modal-footer {
+    padding: 1.25rem;
+    border-top: 1px solid #f1f3fa;
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+.form-group {
+    margin-bottom: 1rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    color: #6c757d;
+}
+
+.form-control {
+    width: 100%;
+    padding: 0.6rem;
+    border: 1px solid #dee2e6;
+    border-radius: 4px;
+    font-family: inherit;
+}
+
+.form-row {
+    display: flex;
+    gap: 1rem;
+}
+
+.col {
+    flex: 1;
+}
+
+.btn-secondary {
+    background: #f1f3fa;
+    color: #333;
+    border: none;
+    padding: 0.6rem 1.2rem;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 500;
+}

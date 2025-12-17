@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ADMIN - EDIP®</title>
+    <link rel="icon" href="banners-imagens/favicon.png" type="image/png">
+    <link rel="stylesheet" href="css/admin.css">
+</head>
+
+<body>
+
+    <div class="admin-wrapper">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <img src="banners-imagens/images/logo.png" alt="EDIP" class="logo-img">
+                <span class="logo-text">EDIP ADMIN</span>
+            </div>
+
+            <nav class="sidebar-nav">
+                <a href="#" class="nav-item active" data-tab="dashboard">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="3" y="3" width="7" height="7"></rect>
+                        <rect x="14" y="3" width="7" height="7"></rect>
+                        <rect x="14" y="14" width="7" height="7"></rect>
+                        <rect x="3" y="14" width="7" height="7"></rect>
+                    </svg>
+                    <span>Visão Geral</span>
+                </a>
+                <a href="#" class="nav-item" data-tab="products">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+                        <line x1="3" y1="6" x2="21" y2="6"></line>
+                        <path d="M16 10a4 4 0 0 1-8 0"></path>
+                    </svg>
+                    <span>Produtos</span>
+                </a>
+                <!-- Placeholders for future use -->
+                <a href="index.html" class="nav-item disabled" data-i18n="admin_back">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+                        <polyline points="16 17 21 12 16 7"></polyline>
+                        <line x1="21" y1="12" x2="9" y2="12"></line>
+                    </svg>
+                    <span>Sair (Ir para Loja)</span>
+                </a>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Topbar -->
+            <header class="topbar">
+                <h2 id="page-title">Visão Geral</h2>
+                <div class="topbar-actions">
+                    <button id="save-global-btn" class="save-btn-primary">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"></path>
+                            <polyline points="17 21 17 13 7 13 7 21"></polyline>
+                            <polyline points="7 3 7 8 15 8"></polyline>
+                        </svg>
+                        Salvar Alterações
+                    </button>
+                    <div class="user-profile">
+                        <div class="avatar">AD</div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- VIEW: DASHBOARD -->
+            <div id="view-dashboard" class="content-view active">
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <h3>Total Produtos</h3>
+                        <p class="stat-value" id="stat-total">0</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Em Estoque</h3>
+                        <p class="stat-value" id="stat-active">0</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3>Esgotados</h3>
+                        <p class="stat-value" id="stat-soldout">0</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- VIEW: PRODUCTS -->
+            <div id="view-products" class="content-view hidden">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="search-box">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <circle cx="11" cy="11" r="8"></circle>
+                                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                            </svg>
+                            <input type="text" placeholder="Buscar produtos...">
+                        </div>
+                        <button id="add-product-btn" class="btn-primary">
+                            + Novo Produto
+                        </button>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th width="80">Imagem</th>
+                                    <th>Produto</th>
+                                    <th>Status</th>
+                                    <th>Preço</th>
+                                    <th class="text-right">Ações</th>
+                                </tr>
+                            </thead>
+                            <tbody id="admin-product-list">
+                                <!-- Populated by JS -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Modal (Reused structure) -->
+    <div id="product-modal" class="modal hidden">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 id="modal-title">Editar Produto</h3>
+                    <button class="close-modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <form id="product-form">
+                        <input type="hidden" id="edit-id">
+
+                        <div class="form-group">
+                            <label>Nome do Produto</label>
+                            <input type="text" id="edit-title" class="form-control" required>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group col">
+                                <label>Preço (R$)</label>
+                                <input type="number" id="edit-price" class="form-control" step="0.01" required>
+                            </div>
+                            <div class="form-group col">
+                                <label>Preço Antigo (Opcional)</label>
+                                <input type="number" id="edit-original-price" class="form-control" step="0.01">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>URL Imagem</label>
+                            <input type="text" id="edit-image" class="form-control" required>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group col">
+                                <label>Badge</label>
+                                <select id="edit-badge" class="form-control">
+                                    <option value="">Nenhum</option>
+                                    <option value="SALE">SALE</option>
+                                    <option value="SOLD OUT">SOLD OUT</option>
+                                    <option value="NEW">NEW</option>
+                                </select>
+                            </div>
+                            <div class="form-group col">
+                                <label>Status</label>
+                                <select id="edit-status" class="form-control">
+                                    <option value="active">Ativo</option>
+                                    <option value="sold_out">Esgotado</option>
+                                    <option value="hidden">Oculto</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="modal-footer">
+                            <button type="button" class="btn-secondary cancel-btn">Cancelar</button>
+                            <button type="submit" class="btn-primary">Salvar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/products.js"></script>
+    <script src="js/localization.js"></script>
+    <script src="js/admin.js"></script>
+</body>
+
+</html>

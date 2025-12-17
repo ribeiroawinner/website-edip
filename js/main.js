@@ -44,3 +44,15 @@ function updateTime() {
 
 updateTime();
 setInterval(updateTime, 1000);
+
+// Shrinking Header Logic
+window.addEventListener('scroll', () => {
+    const header = document.querySelector('.shop-header');
+    if (header) {
+        if (window.scrollY > 50) {
+            header.classList.add('scrolled');
+        } else {
+            header.classList.remove('scrolled');
+        }
+    }
+});

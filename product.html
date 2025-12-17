@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LOADING... - EDIP®</title>
+    <link rel="icon" href="banners-imagens/favicon.png" type="image/png">
+    <link rel="stylesheet" href="css/style.css">
+
+</head>
+
+<body class="product-details-page">
+
+    <!-- Header (Simple) -->
+    <header style="padding: 1.5rem; display: flex; justify-content: space-between; align-items: center;">
+        <a href="shop.html" style="color: #fff; text-decoration: none; font-size: 1.5rem;">&larr;</a>
+        <a href="index.html"><img src="banners-imagens/images/logo.png" style="height: 30px;" alt="EDIP"></a>
+        <button class="cart-btn" style="background:none; border:none; color:white;">CART (<span
+                class="cart-badge">0</span>)</button>
+    </header>
+
+    <main class="product-page-container">
+        <!-- Loaded dynamically -->
+        <div class="product-gallery" id="p-gallery">
+            <!-- Images injected here -->
+        </div>
+
+        <div class="product-details">
+            <h1 class="product-title-large" id="p-title">LOADING...</h1>
+            <div class="product-price-large">
+                <span id="p-price">--</span>
+                <span id="p-status" class="sold-out-badge-lg hidden">SOLD OUT</span>
+            </div>
+
+            <p style="margin-bottom: 1rem; color: #888; font-size: 0.9rem;" data-i18n="product_tax">Tax included.</p>
+
+            <label class="selector-label">Size</label>
+            <div class="size-options" id="size-selector">
+                <button class="size-btn" data-size="S">S</button>
+                <button class="size-btn" data-size="M">M</button>
+                <button class="size-btn" data-size="L">L</button>
+                <button class="size-btn" data-size="XL">XL</button>
+            </div>
+
+            <label class="selector-label">Quantity</label>
+            <div class="qty-selector">
+                <button class="qty-btn" onclick="updateQty(-1)">-</button>
+                <span class="qty-value" id="qty-display">1</span>
+                <button class="qty-btn" onclick="updateQty(1)">+</button>
+            </div>
+
+            <button id="add-btn-lg" class="add-to-cart-lg" data-i18n="product_add">ADD TO CART</button>
+
+            <!-- Accordions -->
+            <div class="accordion-item">
+                <button class="accordion-header" onclick="toggleAccordion(this)">
+                    <span style="font-weight:bold; margin-right:5px; font-size:1em;"
+                        data-i18n="product_desc">Description</span> <span>+</span>
+                </button>
+                <div class="accordion-content">
+                    <p>High quality streetwear piece designed for comfort and style. Limited edition drop from EDIP
+                        collection. Made with premium materials.</p>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <button class="accordion-header" onclick="toggleAccordion(this)">
+                    <span style="font-weight:bold; margin-right:5px; font-size:1em;"
+                        data-i18n="product_delivery">Delivery</span> <span>+</span>
+                </button>
+                <div class="accordion-content">
+                    <p>Shipping calculated at checkout. Worldwide shipping available. Standard delivery 3-5 business
+                        days.</p>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <button class="accordion-header" onclick="toggleAccordion(this)">
+                    <span style="font-weight:bold; margin-right:5px; font-size:1em;"
+                        data-i18n="product_material">Material</span> <span>+</span>
+                </button>
+                <div class="accordion-content">
+                    <p>100% Cotton Heavyweight French Terry.</p>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <button class="accordion-header" onclick="toggleAccordion(this)">
+                    <span style="font-weight:bold; margin-right:5px; font-size:1em;" data-i18n="product_size">Size
+                        Guide</span> <span>+</span>
+                </button>
+                <div class="accordion-content">
+                    <p>Fits true to size. For oversized fit, take one size up.</p>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <footer class="shop-footer">
+        <div class="footer-selectors">
+            <div class="selector-wrapper">
+                <label data-i18n="footer_currency">Currency</label>
+                <select class="styled-select" id="currency-selector">
+                    <option value="BRL">BRL</option>
+                    <option value="USD">USD</option>
+                    <option value="EUR">EUR</option>
+                </select>
+            </div>
+            <div class="selector-wrapper">
+                <label data-i18n="footer_language">Language</label>
+                <select class="styled-select" id="lang-selector">
+                    <option value="PORTUGUÊS">PORTUGUÊS</option>
+                    <option value="ENGLISH">ENGLISH</option>
+                    <option value="FRANÇAIS">FRANÇAIS</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="social-icons" style="justify-content: center; margin-bottom: 2rem; margin-top: 1.5rem;">
+            <a href="https://www.instagram.com/edip__official/" target="_blank" aria-label="Instagram">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                    <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                </svg>
+            </a>
+            <a href="https://www.tiktok.com/@edip__official" target="_blank" aria-label="TikTok">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"></path>
+                </svg>
+            </a>
+            <a href="https://br.pinterest.com/edip__official" target="_blank" aria-label="Pinterest">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" stroke="none">
+                    <path
+                        d="M12 0C5.373 0 0 5.373 0 12c0 4.99 3.057 9.243 7.425 11.025-.102-.938-.195-2.383.04-3.411.213-.93 1.368-5.8 1.368-5.8s-.35-.7-.35-1.733c0-1.625.943-2.84 2.118-2.84.998 0 1.48.75 1.48 1.65 0 1.006-.64 2.511-.97 3.906-.276 1.168.585 2.122 1.735 2.122 2.083 0 3.685-2.197 3.685-5.366 0-2.805-2.016-4.766-4.895-4.766-3.333 0-5.29 2.498-5.29 5.08 0 1.006.388 2.085.875 2.67.096.115.11.216.082.332-.09.375-.292 1.186-.332 1.353-.053.218-.173.265-.4.16-1.493-.695-2.425-2.875-2.425-4.63 0-3.77 2.738-7.23 7.896-7.23 4.145 0 7.368 2.955 7.368 6.903 0 4.12-2.597 7.433-6.202 7.433-1.21 0-2.35-.63-2.74-1.37l-.746 2.847c-.27.978-1.005 2.204-1.498 2.95 1.13.336 2.345.518 3.593.518 6.627 0 12-5.373 12-12S18.627 0 12 0z" />
+                </svg>
+            </a>
+        </div>
+
+        <div class="footer-legal">
+            <button class="legal-trigger" data-i18n="footer_terms">TERMOS E POLÍTICAS</button>
+            <div class="legal-content">
+                <a href="#" data-i18n="footer_privacy">POLÍTICA DE PRIVACIDADE</a>
+                <a href="#" data-i18n="footer_returns">TROCAS E DEVOLUÇÕES</a>
+                <a href="#" data-i18n="footer_contact">CONTATO</a>
+                <a href="#" data-i18n="footer_terms_use">TERMOS DE USO</a>
+            </div>
+        </div>
+
+        <p>&copy; 2025 EDIP.</p>
+    </footer>
+
+    <!-- Cart Drawer -->
+    <div id="cart-overlay"></div>
+    <div id="cart-drawer">
+        <div class="cart-header">
+            <h2>Your Cart</h2>
+            <button class="cart-close">&times;</button>
+        </div>
+        <div class="cart-items"></div>
+        <div class="cart-footer">
+            <div class="cart-subtotal"><span>Subtotal</span><span class="cart-total-price">R$ 0,00</span></div>
+            <button class="checkout-btn">Checkout</button>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/localization.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/products.js"></script>
+    <script src="js/cart.js"></script>
+    <script src="js/product-details.js"></script>
+
+</body>
+
+</html>
