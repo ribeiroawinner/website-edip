@@ -1,0 +1,12 @@
+{
+  "name": "edip-store",
+  "version": "1.0.0",
+  "description": "EDIP Luxury Streetwear - Official Storefront",
+  "scripts": {
+    "dev": "vercel dev",
+    "deploy": "vercel --prod"
+  },
+  "dependencies": {
+    "node-fetch": "^2.7.0"
+  }
+}

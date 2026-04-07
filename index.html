@@ -1,89 +1,131 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EDIP® - Worldwide Shipping</title>
-    <link rel="icon" href="banners-imagens/favicon.png" type="image/png">
-    <link rel="stylesheet" href="css/style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EDIP | Luxury Streetwear</title>
+  <link rel="stylesheet" href="style.css">
 </head>
+<body class="locked">
 
-<body>
-
-    <!-- Background Video -->
-    <video autoplay muted loop playsinline webkit-playsinline id="bg-video" poster="banners-imagens/images/hero-bg.png">
-        <source src="banners-imagens/banner.mp4" type="video/mp4">
+  <!-- Splash Screen -->
+  <section id="splash-screen">
+    <video autoplay muted loop playsinline class="splash-video">
+      <source src="assets/splash_video.mp4" type="video/mp4">
+      <img src="assets/hero_bg.png" alt="Brand Vibe" class="splash-bg">
     </video>
+    <a href="#new" class="enter-link" id="enter-experience">Shop Now</a>
+  </section>
 
-    <!-- Loading Screen -->
-    <div id="loading-screen">
-        <div class="loader-content">
-            <img src="banners-imagens/images/logo.png" alt="Loading..." class="loader-logo">
-        </div>
+  <!-- Navigation Header -->
+  <header class="hidden">
+    <div class="header-left">
+      <button class="menu-btn">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+      </button>
     </div>
-
-    <main class="landing-container">
-        <!-- Logo -->
-        <div class="logo-container">
-            <img src="banners-imagens/images/logo.png" alt="EDIP Logo" class="brand-logo">
-        </div>
-
-        <!-- Date/Time -->
-        <div class="datetime-display" id="datetime">
-            <!-- JS vai preencher aqui -->
-            12/05/2025 11:28 PM GMT
-        </div>
-
-        <!-- Navigation Stack -->
-        <nav class="vertical-nav">
-            <ul>
-                <li><a href="#" class="cart-link">CART <span class="cart-count">0</span></a></li>
-                <li><a href="shop.html">SHOP</a></li>
-                <li><a href="lookbook.html">LOOKBOOK</a></li>
-                <li><a href="contact.html">CONTACT</a></li>
-                <li><a href="https://whatsapp.com/channel/0029Vb5jFoH05MUeQKJN9X1g" target="_blank">COMMUNITY</a></li>
-            </ul>
-        </nav>
-
-
-
-        <div class="footer-legal" style="margin-top: 2rem; text-align: center;">
-            <button class="legal-trigger" data-i18n="footer_terms"
-                style="font-size: 0.7rem; opacity: 0.6; text-decoration: none;">TERMOS E POLÍTICAS</button>
-            <div class="legal-content">
-                <a href="#" data-i18n="footer_privacy">POLÍTICA DE PRIVACIDADE</a>
-                <a href="#" data-i18n="footer_returns">TROCAS E DEVOLUÇÕES</a>
-                <a href="#" data-i18n="footer_contact">CONTATO</a>
-                <a href="#" data-i18n="footer_terms_use">TERMOS DE USO</a>
-            </div>
-        </div>
-    </main>
-
-    <script src="js/localization.js"></script>
-    <script src="js/main.js"></script>
-    <script src="js/audio-player.js"></script>
-    <script src="js/cart.js"></script>
-    <script src="js/loading.js"></script>
-
-    <!-- Cart Drawer -->
-    <div id="cart-overlay"></div>
-    <div id="cart-drawer">
-        <div class="cart-header">
-            <h2>Your Cart</h2>
-            <button class="cart-close">&times;</button>
-        </div>
-        <div class="cart-items">
-            <!-- Items injected by JS -->
-        </div>
-        <div class="cart-footer">
-            <div class="cart-subtotal">
-                <span>Subtotal</span>
-                <span class="cart-total-price">R$ 0,00</span>
-            </div>
-            <button class="checkout-btn">Checkout</button>
-        </div>
+    
+    <div class="header-center">
+      <div class="logo-main">EDIP</div>
     </div>
+    
+    <div class="header-right">
+      <button class="icon-btn"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></button>
+      <button class="icon-btn"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg></button>
+      <button class="icon-btn cart-icon" id="cart-btn" onclick="openCart()">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"></path><line x1="3" y1="6" x2="21" y2="6"></line><path d="M16 10a4 4 0 0 1-8 0"></path></svg>
+        <span class="cart-badge" id="cart-badge">0</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main id="main-content">
+    
+    <!-- Product Grid -->
+    <section class="product-grid" id="new">
+      <!-- Os produtos serão carregados dinamicamente via Yampi API -->
+    </section>
+
+  </main>
+
+  <!-- Cart Drawer -->
+  <div id="cart-overlay" class="cart-overlay" onclick="closeCart()"></div>
+  <aside id="cart-drawer" class="cart-drawer">
+    <div class="cart-drawer-header">
+      <h2 id="cart-title">Carrinho</h2>
+      <button class="cart-close-btn" onclick="closeCart()">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+      </button>
+    </div>
+    <div id="cart-items" class="cart-items"></div>
+    <div class="cart-drawer-footer">
+      <div class="cart-total">
+        <span id="cart-total-label">Total</span>
+        <span id="cart-total-price">R$ 0,00</span>
+      </div>
+      <button class="checkout-btn" id="checkout-btn" onclick="proceedToCheckout()">
+        Finalizar Compra
+      </button>
+    </div>
+  </aside>
+
+  <!-- Footer (Visible only after splash) -->
+  <footer id="main-footer" class="hidden">
+    <div class="footer-socials">
+      <a href="#" class="social-link">Instagram</a>
+      <a href="#" class="social-link">TikTok</a>
+    </div>
+    
+    <div class="footer-selectors">
+      <!-- Currency Selector -->
+      <div class="selector-dropdown" id="currency-selector">
+        <button class="selector-btn" onclick="toggleDropdown('currency-dropdown')">
+          <span id="currency-label">R$ BRL</span>
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+        </button>
+        <ul class="dropdown-menu" id="currency-dropdown">
+          <li onclick="setCurrency('BRL','R$','pt-BR')">🇧🇷 R$ — Real Brasileiro</li>
+          <li onclick="setCurrency('USD','$','en-US')">🇺🇸 $ — US Dollar</li>
+          <li onclick="setCurrency('EUR','€','de-DE')">🇪🇺 € — Euro</li>
+          <li onclick="setCurrency('GBP','£','en-GB')">🇬🇧 £ — British Pound</li>
+          <li onclick="setCurrency('ARS','ARS','es-AR')">🇦🇷 ARS — Peso Argentino</li>
+          <li onclick="setCurrency('JPY','¥','ja-JP')">🇯🇵 ¥ — Japanese Yen</li>
+        </ul>
+      </div>
+
+      <!-- Language Selector -->
+      <div class="selector-dropdown" id="language-selector">
+        <button class="selector-btn" onclick="toggleDropdown('language-dropdown')">
+          <span id="lang-label">🇧🇷 Português</span>
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+        </button>
+        <ul class="dropdown-menu" id="language-dropdown">
+          <li onclick="setLanguage('pt')">🇧🇷 Português</li>
+          <li onclick="setLanguage('en')">🇺🇸 English</li>
+          <li onclick="setLanguage('es')">🇪🇸 Español</li>
+        </ul>
+      </div>
+    </div>
+    
+    <div class="footer-payments">
+      <span class="payment-icon">PIX</span>
+      <span class="payment-icon">VISA</span>
+      <span class="payment-icon">MASTERCARD</span>
+      <span class="payment-icon">AMEX</span>
+      <span class="payment-icon">APPLE PAY</span>
+      <span class="payment-icon">GOOGLE PAY</span>
+    </div>
+    
+    <div class="footer-info">
+      <p>&copy; 2026, EDIP</p>
+      <div class="footer-links">
+        <a href="#" data-i18n="privacy">Privacy policy</a>
+        <a href="#" data-i18n="contact">Contact information</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="main.js"></script>
 </body>
-
 </html>
